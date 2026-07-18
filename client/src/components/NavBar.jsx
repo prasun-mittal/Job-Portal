@@ -21,8 +21,8 @@ const NavBar = () => {
                 <UserButton />
               </div>
               :<div className='flex gap-4 max-sm:text-xs'>
-                <button className='text-gray-600'>Recuritor Login</button>
-                <button onClick={ e=> openSignIn()} className= 'bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full'>Login</button>
+                <button className='text-gray-600 cursor-pointer'>Recuritor Login</button>
+                <button onClick={ e=> openSignIn()} className= 'bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full cursor-pointer'>Login</button>
             </div>
             }
             
