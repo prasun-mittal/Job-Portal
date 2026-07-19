@@ -5,3 +5,155 @@
 *{
     font-family: Outfit;
 }
+
+@layer base {
+    html{
+        scroll-behavior: smooth;
+    }
+}
+
+::-webkit-scrollbar{
+    display:none;
+}
+
+.rich-text {
+  font-size: 15px;
+  color: #7A7B7D;
+  line-height: 1.8;
+}
+
+.rich-text p {
+  margin-bottom: 16px;
+}
+
+.rich-text h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #252525;
+  margin: 24px 0 16px;
+}
+
+.rich-text h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #252525;
+  margin: 22px 0 14px;
+}
+
+.rich-text h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333333;
+  margin: 20px 0 12px;
+}
+
+.rich-text h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444444;
+  margin: 18px 0 10px;
+}
+
+.rich-text h5 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555555;
+  margin: 16px 0 8px;
+}
+
+.rich-text h6 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666666;
+  margin: 14px 0 8px;
+}
+
+.rich-text strong,
+.rich-text b {
+  font-weight: 700;
+  color: #222222;
+}
+
+.rich-text em {
+  font-style: italic;
+}
+
+.rich-text u {
+  text-decoration: underline;
+}
+
+.rich-text ul {
+  list-style: disc;
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+.rich-text ol {
+  list-style: decimal;
+  margin-left: 24px;
+  margin-bottom: 16px;
+}
+
+.rich-text li {
+  margin-bottom: 8px;
+}
+
+.rich-text a {
+  color: #2563EB;
+  text-decoration: underline;
+}
+
+.rich-text blockquote {
+  border-left: 4px solid #3B82F6;
+  padding-left: 16px;
+  margin: 20px 0;
+  color: #555555;
+  font-style: italic;
+}
+
+.rich-text code {
+  background: #F3F4F6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.rich-text pre {
+  background: #1F2937;
+  color: #F9FAFB;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.rich-text img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.rich-text hr {
+  border: none;
+  border-top: 1px solid #E5E7EB;
+  margin: 24px 0;
+}
+
+.rich-text table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.rich-text th,
+.rich-text td {
+  border: 1px solid #D1D5DB;
+  padding: 10px;
+  text-align: left;
+}
+
+.rich-text th {
+  background: #F3F4F6;
+  font-weight: 600;
+}
