@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard'
 import ManageJobs from './pages/ManageJobs'
 import ViewApplication from './pages/ViewApplication'
 import AddJob from './pages/AddJob'
+import 'quill/dist/quill.snow.css'
 
 const App = () => {
 
@@ -23,7 +24,7 @@ const App = () => {
         <Route path='/applications' element={<Application/>}/>
         <Route path='/dashboard' element={<Dashboard/>}>
           <Route path='add-job' element={<AddJob/>} />
-          <Route path='manage-job' element={<ManageJobs/>} />
+          <Route path='manage-jobs' element={<ManageJobs/>} />
           <Route path='view-applications' element={<ViewApplication/>} />
         </Route>
 
