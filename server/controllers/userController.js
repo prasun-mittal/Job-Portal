@@ -1,7 +1,7 @@
 import Job from "../models/job.js"
 import JobApplication from "../models/jobApplication.js"
 import User from "../models/User.js"
-
+import {v2 as cloudnary} from 'cloudinary'
 
 // Get User data
 export const getUserData = async(req,res) => {
@@ -59,9 +59,47 @@ export const applyForJob = async (req,res) => {
 // Get user applied applications
 export const getUserJobApplication = async (req,res) => {
     
+    try {
+        
+        const userId = req.auth.userId
+
+        const applications = await JobApplication.find({userId})
+        .populate('companyId','name email image')
+        .populate('jobId','title description location category level salary')
+        .exec()
+
+        if (!applications) {
+            return res.json({success:false,message:'No job application found for this user'})
+        }
+        return res.json({success:true,applications})
+
+    } catch (error) {
+        res.json({success:false,message:error.message})
+    }
+
 }
 
 // update User profile (resume)
 export const updateUserResume = async (req,res) => {
     
+    try {
+        
+        const userId = req.auth.userId
+
+        const resumeFile = req.resumeFile
+        
+        const userData = await User.findById(userId)
+
+        if (resumeFile) {
+            const resumeUpload = await cloudnary.uploader.upload(resumeFile.path)
+            userData.resume = resumeUpload.secure_url
+        }
+
+        await userData.save()
+
+        return res.json({success:true,message:'Resume Updated'})
+
+    } catch (error) {
+        res.json({success:false,message:error.message})
+    }
 }
