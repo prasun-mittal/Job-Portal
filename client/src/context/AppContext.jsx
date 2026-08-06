@@ -64,59 +64,25 @@ export const AppContextProvider =(props) => {
             toast.error(error.message)
         }
     }
-
-    // Function to fetch user data
     
     const fetchUserData = async () => {
-    try {
-
-        const token = await getToken();
-
-        console.log("TOKEN:", token);
-
-        const { data } = await axios.get(
-            backendUrl + "/api/users/user",
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }
-        );
-
-        console.log("API RESPONSE:", data);
-
-        if (data.success) {
-            setuserData(data.user);
-        } else {
-            toast.error(data.message);
-        }
-
-    } catch (error) {
-        console.log(error);
-        console.log(error.response?.data);
-        toast.error(error.message);
-    }
-}
-    
-    
-    // const fetchUserData = async () => {
-    //     try {
+        try {
             
-    //         const token = await getToken()
+            const token = await getToken()
 
-    //         const {data} = await axios.get(backendUrl+'/api/users/user',
-    //             {headers:{Authorization:`Bearer ${token}`}})
+            const {data} = await axios.get(backendUrl+'/api/users/user',
+                {headers:{Authorization:`Bearer ${token}`}})
 
-    //         if (data.success) {
-    //             setuserData(data.user)
-    //         } else{
-    //             toast.error(data.message)
-    //         }
+            if (data.success) {
+                setuserData(data.user)
+            } else{
+                toast.error(data.message)
+            }
 
-    //     } catch (error) {
-    //         toast.error(error.message)
-    //     }
-    // }
+        } catch (error) {
+            toast.error(error.message)
+        }
+    }
 
     useEffect(()=>{
         fetchJobs()
@@ -151,6 +117,9 @@ export const AppContextProvider =(props) => {
             companyData,setCompanyData,
             companyToken,setCompanyToken,
             backendUrl,
+            userData,setuserData,
+            userApplications,setuserApplications,
+            fetchUserData,
     }
 
     return (<AppContext.Provider value={value}>
