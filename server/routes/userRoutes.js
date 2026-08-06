@@ -1,20 +1,24 @@
-import express from 'express'
-import { applyForJob, getUserData, getUserJobApplication, updateUserResume } from '../controllers/userController.js'
-import upload from '../config/multer.js'
+import express from "express";
+import {
+  applyForJob,
+  getUserData,
+  getUserJobApplication,
+  updateUserResume,
+} from "../controllers/userController.js";
+import upload from "../config/multer.js";
 
+const router = express.Router();
 
-const router = express.Router()
+router.get("/user", getUserData);
 
-// Get User Data
-router.get('/user',getUserData)
+router.post("/apply", applyForJob);
 
-// Apply for a Job
-router.post('/apply',applyForJob)
+router.get("/applications", getUserJobApplication);
 
-// Get applied job data
-router.get('/applications',getUserJobApplication)
+router.post(
+  "/update-resume",
+  upload.single("resume"),
+  updateUserResume
+);
 
-// update user profile
-router.post('/update-resume',upload.single('resume'),updateUserResume)
-
-export default router
+export default router;

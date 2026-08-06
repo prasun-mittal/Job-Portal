@@ -66,24 +66,57 @@ export const AppContextProvider =(props) => {
     }
 
     // Function to fetch user data
+    
     const fetchUserData = async () => {
-        try {
-            
-            const token = await getToken()
+    try {
 
-            const {data} = await axios.get(backendUrl+'/api/users/user',
-                {headers:{Authorization:`Bearer ${token}`}})
+        const token = await getToken();
 
-            if (data.success) {
-                setuserData(data.user)
-            } else{
-                toast.error(data.message)
+        console.log("TOKEN:", token);
+
+        const { data } = await axios.get(
+            backendUrl + "/api/users/user",
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             }
+        );
 
-        } catch (error) {
-            toast.error(error.message)
+        console.log("API RESPONSE:", data);
+
+        if (data.success) {
+            setuserData(data.user);
+        } else {
+            toast.error(data.message);
         }
+
+    } catch (error) {
+        console.log(error);
+        console.log(error.response?.data);
+        toast.error(error.message);
     }
+}
+    
+    
+    // const fetchUserData = async () => {
+    //     try {
+            
+    //         const token = await getToken()
+
+    //         const {data} = await axios.get(backendUrl+'/api/users/user',
+    //             {headers:{Authorization:`Bearer ${token}`}})
+
+    //         if (data.success) {
+    //             setuserData(data.user)
+    //         } else{
+    //             toast.error(data.message)
+    //         }
+
+    //     } catch (error) {
+    //         toast.error(error.message)
+    //     }
+    // }
 
     useEffect(()=>{
         fetchJobs()
