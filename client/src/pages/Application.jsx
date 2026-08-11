@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '../components/NavBar'
 import { assets } from '../assets/assets'
 import { jobsApplied } from '../assets/assets';
@@ -18,7 +18,7 @@ const Application = () => {
   const [isEdit,setIsEdit] = useState(false)
   const [resume,setResume] = useState(null)
 
-  const {backendUrl, userData, userApplications, fetchUserData} = useContext(AppContext)
+  const {backendUrl, userData, userApplications, fetchUserData, fetchUserApplications} = useContext(AppContext)
 
   const updateResume = async () => {
     
@@ -48,6 +48,12 @@ const Application = () => {
 
   }
 
+  useEffect(()=>{
+    if (user) {
+      fetchUserApplications()
+    }
+  },[user])
+
   return (
     <>
         <NavBar />
@@ -65,7 +71,7 @@ const Application = () => {
                   <button className='bg-green-100  border border-green-400 rounded-lg px-4 py-2 cursor-pointer' onClick={updateResume}>Save</button>
               </>
               : <div className='flex gap-2'>
-                  <a className='bg-blue-100 text-blue-600 px-4 py-2 rounded-lg' href="">
+                  <a className='bg-blue-100 text-blue-600 px-4 py-2 rounded-lg' href={userData?.resume} target='_blank'>
                     Resume
                   </a>
                   <button onClick={()=>setIsEdit(true)} className='cursor-pointer text-gray-500 border border-gray-300 rounded-lg px-4 py-2'>Edit</button>
